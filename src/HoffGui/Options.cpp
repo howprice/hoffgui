@@ -39,9 +39,6 @@
 
 static const char* kFilename = "hoffgui.ini";
 
-static char s_optionsStorage[1024];
-static size_t s_optionsStorageSize = 0;
-
 // e.g. "C:\Users\Howard\AppData\Roaming\TTE\hoffgui\hoffgui.ini"
 void ConstructOptionsPath(char* optionsPath, size_t optionsPathSize)
 {
@@ -263,8 +260,6 @@ static bool optionsIniHandler(const char* pSection, const char* key, const char*
 
 bool LoadOptions(Options& options)
 {
-	HP_ASSERT(s_optionsStorageSize == 0, "#TODO: Support loading options multiple times iff required");
-
 	char optionsPath[kMaxPath];
 	ConstructOptionsPath(optionsPath, sizeof(optionsPath));
 

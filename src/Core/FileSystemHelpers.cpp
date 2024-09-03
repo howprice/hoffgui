@@ -1,5 +1,6 @@
 #include "FileSystemHelpers.h"
 
+#include "Core/FileSystem.h"
 #include "Core/StringHelpers.h"
 #include "Core/hp_assert.h"
 
@@ -48,9 +49,9 @@ void FileSystemHelpers::ConstructSidecarFileName(
 	char filenameBuffer[kMaxPath];
 	SafeStrcpy(filenameBuffer, sizeof(filenameBuffer), path);
 	char* filename = basename(filenameBuffer); // e.g. "Bootblock"
-	char* extension = (strrchr(filename, '.'));
-	if (extension)
-		*extension = '\0';
+	char* dot = (strrchr(filename, '.'));
+	if (dot)
+		*dot = '\0';
 
 	// e.g. "/home/howard/GitHub/howprice/hoffgui/data/Bootblock.lst"
 	SafeSnprintf(sidecarPath, bufferSizeBytes, "%s/%s.%s", directory, filename, extension);

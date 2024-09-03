@@ -228,7 +228,12 @@ ___
 
 #include <stdint.h>
 
-#if defined(__GNUC__)
+#if defined(__clang__)
+#pragma clang diagnostic push
+#if __has_warning("-Wunknown-warning-option")
+#pragma clang diagnostic ignored "-Wunknown-warning-option"         // warning: unknown warning group 'xxx'                     // not all warnings are known by all Clang versions and they tend to be rename-happy.. so ignoring warnings triggers new warnings on some configuration. Great!
+#endif
+#elif defined(__GNUC__)
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wimplicit-fallthrough"  // imgui_markdown.h:726:33: error: this statement may fall through [-Werror=implicit-fallthrough=]
 #pragma GCC diagnostic ignored "-Wmaybe-uninitialized" // imgui_markdown.h:719:33: error: ‘em.ImGui::Emphasis::sym’ may be used uninitialized in this function [-Werror=maybe-uninitialized]
@@ -1036,6 +1041,8 @@ namespace ImGui
 
 }
 
-#if defined(__GNUC__)
+#if defined(__clang__)
+#pragma clang diagnostic pop
+#elif defined(__GNUC__)
 #pragma GCC diagnostic pop
 #endif
