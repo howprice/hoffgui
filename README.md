@@ -37,11 +37,31 @@ This project uses submodules. Either clone with `--recurse-submodules`
 
 ## Configure an out-of-source build setup
 
-From the repo root directory:
+### Windows
 
-    cmake -S . -B build
+#### Visual Studio Code
+
+Install the [CMake Tools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools) extension for Visual Studio Code. Open the project folder in Visual Studio Code and configure CMake with the default kit. 
+
+#### Visual Studio
+
+Configure CMake from the Visual Studio Native tools command prompt (e.g. Start -> *x64 Native Tools Command Prompt for VS2022*) to use the Visual Studio's CMake and toolchain. After configuring CMake, the generated solution `build/hoffgui.sln` can be opened with Visual Studio.
+
+### Linux
+
+From the repo root directory, for a debug build:
+
+    cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug
+
+For a release build:
+
+    cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 
 ## Build
+
+### Windows 
+
+Visual Studio has a multi config CMake generator, so the build config can be specified at build time.
 
 Build the default development release with debug information:
 
@@ -51,9 +71,8 @@ or the optimised release build:
 
     cmake --build build --config Release
 
-## Windows 
+### Linux
 
-Configure CMake from the Visual Studio Native tools command prompt (e.g. Start -> *x64 Native Tools Command Prompt for VS2022*) to use the Visual Studio's CMake and toolchain. After configuring CMake, the generated solution `build/hoffgui.sln` can be opened with Visual Studio.
 
 
 # Installing
