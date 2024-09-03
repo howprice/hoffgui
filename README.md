@@ -6,18 +6,22 @@
 
 CMake and a C++ toolchain are required to build. OpenGL 3 drivers are required to run.
 
-### Raspberry Pi only
+### Linux dependencies
 
-    sudo apt install -y autoconf automake libtool pkg-config ninja-build
+    sudo apt install -y build-essential curl zip unzip tar pkg-config autoconf libtool ninja-build python3 python3-pip libegl1-mesa-dev
+
+    pip install jinja2
+
+Optional:
+
+    sudo apt install clang
+
+#### Raspberry Pi only
+
+    sudo apt install libwayland-dev libxkbcommon-dev
     export VCPKG_FORCE_SYSTEM_BINARIES=1
 
 The export command can be put in `.bashrc` to persist this setting.
-
-> CMake Warning at ports/sdl2/portfile.cmake:33 (message):
-> You will need to install Wayland dependencies to use feature wayland:
-
-    sudo apt install libwayland-dev libxkbcommon-dev libegl1-mesa-dev
-
 
 ## Get the source
 
@@ -37,9 +41,9 @@ From the repo root directory:
 
     cmake -S . -B build
 
-## Compile
+## Build
 
-Compile the default development release with debug information:
+Build the default development release with debug information:
 
     cmake --build build
 
