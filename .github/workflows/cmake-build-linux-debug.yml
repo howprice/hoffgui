@@ -8,10 +8,6 @@
 name: Build Ubuntu Debug
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
   workflow_dispatch:
 
 jobs:
@@ -49,14 +45,6 @@ jobs:
       
     - name: Checkout submodules
       run: git submodule update --init --recursive
-
-    # Workaround for "ubuntu-latest runners have an incompatible combination of clang and libstdc++" https://github.com/actions/runner-images/issues/8659
-    # From: https://github.com/actions/runner-images/discussions/9446#discussioncomment-8668540
-    # TODO: Remove if no longer required
-    - name: ubuntu clang/libstdc++ workaround
-      uses: mjp41/workaround8649@c8550b715ccdc17f89c8d5c28d7a48eeff9c94a8
-      with:
-        os: ${{ matrix.os }}
 
     - name: Set reusable strings
       # Turn repeated input strings (such as the build output directory) into step outputs. These step outputs can be used throughout the workflow file.
