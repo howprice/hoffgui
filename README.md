@@ -45,7 +45,7 @@ Install the [CMake Tools](https://marketplace.visualstudio.com/items?itemName=ms
 
 #### Visual Studio
 
-Configure CMake from the Visual Studio Native tools command prompt (e.g. Start -> *x64 Native Tools Command Prompt for VS2022*) to use the Visual Studio's CMake and toolchain. After configuring CMake, the generated solution `build/hoffgui.sln` can be opened with Visual Studio.
+Configure CMake from the Visual Studio Native tools command prompt (e.g. Start -> *x64 Native Tools Command Prompt for VS2022*) to use the Visual Studio's CMake and toolchain. Run scripts\gensln.bat After configuring CMake, the generated solution `build/hoffgui.sln` can be opened with Visual Studio.
 
 ### Linux
 
